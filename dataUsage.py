@@ -4,9 +4,10 @@ import smtplib
 from email.message import EmailMessage
 
 page = requests.get('https://center.vodafone.de/vfcenter/index.html')
-tree = html.fromstring(page.content)
-volumeList = tree.xpath('//*[@id="content"]/div/div/div/section/div[2]/div/div[2]/div/div/div/strong/text()')
-print(volumeList)
+print(page.content)
+# tree = html.fromstring(page.content)
+# volumeList = tree.xpath('//*[@id="content"]/div/div/div/section/div[2]/div/div[2]/div/div/div/strong/text()')
+# print(volumeList)
 # volume = volumeList[0]
 
 # contacts = ['badgujarpankaj24@gmail.com']
