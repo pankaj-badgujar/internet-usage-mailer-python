@@ -6,15 +6,18 @@ from email.message import EmailMessage
 page = requests.get('https://center.vodafone.de/vfcenter/index.html')
 tree = html.fromstring(page.content)
 volumeList = tree.xpath('//*[@id="content"]/div/div/div/section/div[2]/div/div[2]/div/div/div/strong/text()')
-volume = volumeList[0]
+volumeAvailable = volumeList[0]
+volumeAvailable = float((volumeAvailable[:-3]).replace(',','.'))
+volumeConsumed = 200 - volumeAvailable
+mailContent = "Data consumed until today: " + str(round(volumeConsumed,1)) + " GB\n\nData remaining for this month: " + str(volumeAvailable) + " GB"
 
 contacts = ['badgujarpankaj24@gmail.com']
 
 msg = EmailMessage()
-msg['Subject'] = 'Internet Usage'
+msg['Subject'] = 'Internet Status'
 msg['From'] = 'Server'
 msg['To'] = contacts
-msg.set_content(volume)
+msg.set_content(mailContent)
 
 with smtplib.SMTP_SSL('smtp.gmail.com',465) as smtp:
     smtp.login('badgujarpankaj24@gmail.com','Usa@2019')
