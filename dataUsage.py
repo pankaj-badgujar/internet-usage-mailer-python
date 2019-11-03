@@ -11,7 +11,7 @@ volumeAvailable = float((volumeAvailable[:-3]).replace(',','.'))
 volumeConsumed = 200 - volumeAvailable
 mailContent = "Data consumed until today: " + str(round(volumeConsumed,1)) + " GB\n\nData remaining for this month: " + str(volumeAvailable) + " GB"
 
-contacts = ['badgujarpankaj24@gmail.com']
+contacts = [<emailID>]
 
 msg = EmailMessage()
 msg['Subject'] = 'Internet Status'
@@ -20,5 +20,5 @@ msg['To'] = contacts
 msg.set_content(mailContent)
 
 with smtplib.SMTP_SSL('smtp.gmail.com',465) as smtp:
-    smtp.login('badgujarpankaj24@gmail.com','Usa@2019')
+    smtp.login(<emailID>,<password>)
     smtp.send_message(msg)
